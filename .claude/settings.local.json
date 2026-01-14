@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(python:*)",
+      "Bash(nvidia-smi:*)",
+      "Bash(where:*)",
+      "Bash(findstr:*)",
+      "Bash(conda list:*)",
+      "Bash(C:UsersXaviLaraDownloadsCEIABD-IA.venvScriptspip.exe install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124)",
+      "Bash(cmd /c \".venv\\\\Scripts\\\\pip.exe install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124\")",
+      "Bash(.venv/Scripts/pip.exe install:*)",
+      "Bash(.venv/Scripts/python.exe:*)",
+      "Bash(py -0:*)",
+      "Bash(.venv/Scripts/jupyter.exe nbconvert:*)",
+      "Bash(jupyter nbconvert:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
