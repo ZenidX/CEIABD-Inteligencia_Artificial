@@ -1,1 +1,8 @@
 .venv/
+
+# YOLO artifacts
+YOLO/*.pt
+YOLO/*.mp4
+
+# Misc
+nul
