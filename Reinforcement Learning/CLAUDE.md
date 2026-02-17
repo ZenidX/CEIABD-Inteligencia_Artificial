@@ -8,10 +8,10 @@ Materiales completos para aprender Reinforcement Learning, organizados por nivel
 Reinforcement Learning/
 │
 ├── 01_teoria/                                    # NIVEL 1: Fundamentos teóricos
-│   ├── reinforcement_learning_clase.ipynb        # Parte 1: Fundamentos, SARSA, Q-Learning
-│   ├── reinforcement_learning_dqn.ipynb          # Parte 2: DQN, Gymnasium, Práctica
-│   ├── reinforcement_learning_clase2.ipynb       # Parte 3: Stable-Baselines3, PPO, SAC
-│   └── recorrido_proyectos_rl.ipynb              # Guía que relaciona teoría con proyectos
+│   ├── RL_00_proyectos.ipynb                     # Guía que relaciona teoría con proyectos
+│   ├── RL_01_fundamentos.ipynb                   # Parte 1: Fundamentos, SARSA, Q-Learning
+│   ├── RL_02_dqn.ipynb                           # Parte 2: DQN, Gymnasium, Práctica
+│   └── RL_03_sb3.ipynb                           # Parte 3: Stable-Baselines3, PPO, SAC
 │
 ├── 02_fundamentos/                               # NIVEL 2: Implementaciones base
 │   ├── core/                                     # Módulo con algoritmos
@@ -97,10 +97,10 @@ pip install pybullet                # Robótica 3D
 ### Nivel 1: Teoría
 ```bash
 # Abrir notebooks de teoría (en orden)
-jupyter notebook 01_teoria/reinforcement_learning_clase.ipynb   # Parte 1: Fundamentos, SARSA, Q-Learning
-jupyter notebook 01_teoria/reinforcement_learning_dqn.ipynb     # Parte 2: DQN, Gymnasium, Práctica
-jupyter notebook 01_teoria/reinforcement_learning_clase2.ipynb  # Parte 3: Stable-Baselines3, PPO, SAC
-jupyter notebook 01_teoria/recorrido_proyectos_rl.ipynb         # Mapa teoría → proyectos
+jupyter notebook 01_teoria/RL_01_fundamentos.ipynb   # Parte 1: Fundamentos, SARSA, Q-Learning
+jupyter notebook 01_teoria/RL_02_dqn.ipynb           # Parte 2: DQN, Gymnasium, Práctica
+jupyter notebook 01_teoria/RL_03_sb3.ipynb           # Parte 3: Stable-Baselines3, PPO, SAC
+jupyter notebook 01_teoria/RL_00_proyectos.ipynb     # Mapa teoría → proyectos
 ```
 
 ### Nivel 2: Fundamentos
