@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a machine learning and computer vision educational repository (CEIABD-IA) containing projects focused on audio classification, signal processing, and object detection. Primary development uses Jupyter notebooks and Python scripts.
+This is a machine learning and computer vision educational repository (CEIABD-IA) containing projects focused on audio classification, signal processing, object detection, and reinforcement learning. Primary development uses Jupyter notebooks and Python scripts.
 
 ## Projects
 
@@ -14,8 +14,15 @@ Video object detection application using modern YOLO models (v8-v11) with the su
 ```bash
 cd YOLO
 pip install -r requirements.txt
-python video_detector.py --source video.mp4
+
+# Webcam (real-time)
+python video_detector.py
+
+# Video file
+python video_detector.py --source video.mp4 --output resultado.mp4
 ```
+
+Interactive tutorial available in `yolo_detection_tutorial.ipynb`.
 
 See `YOLO/CLAUDE.md` for CLI arguments and architecture details.
 
@@ -24,12 +31,73 @@ Deep learning project that classifies environmental sounds (50 classes) using tr
 
 **Key insight**: Audio files are transformed into RGB images (spectrograms) to leverage image classification models.
 
+Two training notebooks:
+- `practica_resnet50_esc50.ipynb` - Main training with frozen backbone
+- `practica_resnet50_esc50_congelado.ipynb` - Fine-tuning variant
+
 See `AudioClassificationResnet/CLAUDE.md` for detailed architecture and training configuration.
 
 ### VowelsClassificationMachineLearning
 Signal processing project for extracting and analyzing vowel formants (F1, F2, F3) from speech recordings using FFT-based analysis.
 
 See `VowelsClassificationMachineLearning/CLAUDE.md` for detailed function documentation and usage examples.
+
+### Reinforcement Learning
+Complete RL curriculum organized into 4 levels, from tabular Q-Learning to advanced continuous-control algorithms (PPO, SAC, TD3) with Stable-Baselines3.
+
+**Levels:**
+- `01_teoria/` — Theory notebooks (fundamentals, DQN, SB3)
+- `02_fundamentos/` — Q-Learning and DQN implementations from scratch
+- `03_proyectos_dqn/` — DQN projects: Nibbler (Snake), Flappy Bird, Racing
+- `04_proyectos_avanzados/` — SB3 projects: LunarLander, Highway, MiniGrid, PyBullet
+
+```bash
+cd "Reinforcement Learning"
+pip install gymnasium stable-baselines3 torch numpy matplotlib pygame
+pip install gymnasium[box2d] flappy-bird-gymnasium highway-env minigrid pybullet  # per-project extras
+
+# Level 2: tabular / basic DQN
+python 02_fundamentos/ejemplos/ejemplo_qlearning_taxi.py
+python 02_fundamentos/ejemplos/ejemplo_cartpole_dqn.py
+
+# Level 3: DQN projects (select variant with --variant)
+python 03_proyectos_dqn/nibbler/nibbler_game.py --train --variant shaped
+python 03_proyectos_dqn/flappybird/flappybird_dqn.py --algorithm PPO --simple
+python 03_proyectos_dqn/racing/racing_game.py --train --variant shared
+
+# Level 4: advanced SB3 projects
+python 04_proyectos_avanzados/lunarlander/lunarlander_sb3.py --continuous
+python 04_proyectos_avanzados/highway/highway_conduccion.py --transfer
+python 04_proyectos_avanzados/minigrid/minigrid_navegacion.py --variant cnn
+python 04_proyectos_avanzados/pybullet/pybullet_robotica.py --compare-matrix
+```
+
+**Training variants per project:**
+
+| Project | Variant flag | Concept |
+|---------|-------------|---------|
+| Nibbler | `--variant standard` | Baseline DQN |
+| Nibbler | `--variant shaped` | Reward shaping (penalizes loops) |
+| Nibbler | `--variant curiosity` | Intrinsic curiosity (ICM) |
+| Flappy Bird | `--algorithm DQN --simple` | Off-policy, vector obs |
+| Flappy Bird | `--algorithm PPO --simple` | On-policy, vector obs |
+| Flappy Bird | `--compare-algorithms` | DQN vs PPO comparison |
+| Racing | `--variant independent` | 4 separate networks |
+| Racing | `--variant shared` | 1 shared network (CTDE) |
+| Racing | `--variant master_student` | Transfer between agents |
+| Racing | `--variant competitive` | Rank-based reward |
+| LunarLander | `--algorithm PPO/DQN/A2C` | Discrete action space |
+| LunarLander | `--continuous` | Continuous space (SAC/TD3) |
+| Highway | `--env highway` | Single environment |
+| Highway | `--transfer` | Transfer learning |
+| Highway | `--curriculum` | 5-level curriculum |
+| MiniGrid | `--variant flat` | MLP + flattened obs |
+| MiniGrid | `--variant cnn` | CNN for 7×7×3 obs |
+| MiniGrid | `--curriculum` | Progressive environments |
+| PyBullet | `--algorithm PPO/SAC/TD3` | Single algo + robot |
+| PyBullet | `--compare-matrix` | 3 algos × 4 robots grid |
+
+See `Reinforcement Learning/CLAUDE.md` for full variant reference and hyperparameter recommendations.
 
 ## Development Setup
 
@@ -41,14 +109,21 @@ python -m venv .venv
 # Audio Classification dependencies
 pip install torch torchvision torchaudio librosa matplotlib pandas tqdm scikit-learn
 
+# YOLO dependencies (or use YOLO/requirements.txt)
+pip install ultralytics supervision opencv-python
+
 # Vowel Analysis dependencies
 pip install numpy scipy matplotlib ipython
+
+# Reinforcement Learning dependencies
+pip install gymnasium stable-baselines3 torch numpy matplotlib pygame
+pip install gymnasium[box2d] flappy-bird-gymnasium highway-env minigrid pybullet  # per-project extras
 
 # Jupyter
 pip install jupyter
 ```
 
-For GPU support (CUDA 12.4):
+For GPU support (CUDA 12.4) - optional but recommended for training:
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 ```
